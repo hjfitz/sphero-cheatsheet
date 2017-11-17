@@ -72,7 +72,7 @@
         </ul>
         <h4>Example</h4>
         <p>To move to the right, at top speed for 3 seconds</p>
-        <code class='block'>await roll(90.0, 255.0, 3.0)</code>
+        <code class='block language-javascript'>await roll(90.0, 255.0, 3.0)</code>
       </div>
     </div>
 
@@ -87,6 +87,9 @@
           <li><code>deg</code>: How many degrees to move</li>
           <li><code>time</code>: How long this spin should last for</li>
         </ul>
+        <h4>Example</h4>
+        <p>To make the sphero face the other direction in 3 seconds:</p>
+        <code class="block language-javascript">spin(180, 3);</code>
       </div>
     </div>
 
@@ -101,7 +104,13 @@
           <li><code>status</code>: Whether to enable or disable stabilization</li>
         </ul> 
         <h5>Notes:</h5> 
-        <p>To jump, disable stabilization and set speed to max (255)</p>
+        <p>To jump, disable stabilization and set speed to max (255) - for example:</p>
+        <pre class='card line-numbers'>
+            <code class="language-javascript">
+                setStabilization(false); 
+                await roll(0, 255, 4);
+            </code>
+        </pre>
       </div>
     </div>
 
@@ -132,12 +141,15 @@
         <p>A collision event occurs when a Sphero hits something.</p>
         <p><code class="block definition">EventType.onCollision</code></p>
         <h4>Example</h4>
-        <code class="block">
-          async funciton handleCollision() {<br />
-            await spin(180, 2) <br />
-          } <br />
-          registerEvent(EventType.onCollision, handleCollision);
-        </code>
+        <pre class='card line-numbers'>
+          <code class="language-javascript">
+            async funciton handleCollision() {
+              await spin(180, 2);
+            }
+            registerEvent(EventType.onCollision, handleCollision);
+          </code>
+
+        </pre>
       </div>
     </div>
 
@@ -147,27 +159,30 @@
         <p>When a sphero is freefalling (not rolling downhill), this event is triggered. Ideal for checking if the Sphero falls off of a table</p>
         <p><code class="block definition">EventType.onFreefall</code></p>
         <h4>Example</h4>
-        <code class="block">
-          async funciton handleFall() {<br />
-            setStabilization(false); <br />
-            roll(180, 255, 10); <br />
-          } <br />
-          registerEvent(EventType.onFreefall, handleFall);
-        </code>
+        <pre class='card line-numbers'>
+          <code class="language-javascript">
+            async funciton handleFall() {
+              setStabilization(false); 
+              roll(180, 255, 10); 
+            }
+            registerEvent(EventType.onFreefall, handleFall);
+          </code>
+
+        </pre>
       </div>
     </div>
 
     <div class="row">
       <div class="col s12">
         <h3 class='red-text text-accent-4'>Landing</h3>
-        <p>This event is emitted if, and only if, a freefall event has fired and a collision has been detected.</p>
-        <p><code class="block definition"></code></p>
-        <code class="block">
-            async funciton handleLanding() {<br />
-              await spin(1080, 1) <br />
-            } <br />
+        <p>This event is emitted if, and only if, a free fall event has fired and a collision has been detected.</p>
+        <pre class='card line-numbers'>
+          <code class="language-javascript">async funciton handleLanding() {
+              await spin(1080, 1);
+            }
             registerEvent(EventType.onFreefall, handleLanding);
-          </code>
+       </code>
+        </pre>
       </div>
     </div>
 
@@ -176,10 +191,6 @@
   </div>
 
 </main>
-
-
-
-
 
       <footer class="page-footer red accent-4">
           <div class="container">
@@ -213,10 +224,15 @@
 src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
 crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.4/themes/prism.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/js/materialize.min.js"></script>
 <script src="main.js"></script>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/css/materialize.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.4/prism.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.4/plugins/line-numbers/prism-line-numbers.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.4/plugins/line-numbers/prism-line-numbers.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.4/themes/prism-okaidia.css">
 </html>
