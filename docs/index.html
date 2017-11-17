@@ -53,16 +53,17 @@
     <p>The jist of this is: If you want one function to run at a time, you need to block the rest of the program running. This is done by telling the function to <code>await</code> this function. <code>await</code> can only be used in a function declared as <code>async function foo() { /* ... */ }</code> </p>
   </div>
 
+  <div class="divider"></div>
+
   <div id="movement">
-    <h2>Movement</h2>
+    <h2><a class='black-text' href="#movement">Movement</a></h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, nulla beatae cum accusantium ipsa animi vel, architecto id unde, est esse doloribus maxime praesentium! Voluptatem reprehenderit sapiente nesciunt ullam debitis!</p>
     <div class="row">
-
-
       <div class="col s12">
         <h3 class='red-text text-accent-4'>Rolling</h3>
         <p>The basic premise of a Sphero is that it's a little sphere that you can roll about on your phone.</p>
         <p>The function <code>roll()</code> is used for this.</p>
-        <p><code class="block definition">roll(direction, speed, time) → {Promise}</code></p>
+        <p><code class="block definition">roll(direction: float, speed:float, time:float) → {Promise}</code></p>
         <h4>Params</h4>
         <ul>
           <li><code>Direction</code>: the direction in degrees - 0 starts at where you set the blue light to in initialisation</li>
@@ -71,7 +72,7 @@
         </ul>
         <h4>Example</h4>
         <p>To move to the right, at top speed for 3 seconds</p>
-        <code class='block'>await roll(90, 255, 3)</code>
+        <code class='block'>await roll(90.0, 255.0, 3.0)</code>
       </div>
     </div>
 
@@ -80,7 +81,7 @@
           <h3 class='red-text text-accent-4'>Spin</h3>
         <p>If you need to change the direction of a Sphero - in case you hit something (see <a href="#events">Events</a>), you can change the direction that the bot faces</p>
         <p>This spins the sphero a certain amount of degrees in a certain amount of time.</p>
-        <p><code class="block definition">spin(deg, time) → {Promise}</code></p>
+        <p><code class="block definition">spin(deg: float, time: float) → {Promise}</code></p>
         <h4>Params</h4>
         <ul>
           <li><code>deg</code>: How many degrees to move</li>
@@ -94,30 +95,84 @@
         <h3 class='red-text text-accent-4'>Stabilization/Jumping</h3>
         <p>A sphero automatically stabilises itself - so that it doesn't go off in the wrong direction</p>
         <p>Turning this off may seem unintuitive, but you can make the sphere jump!</p>
+        <p><code class="block definition">setStabilization(status: bool) → null</code></p>
+        <h4>Params</h4>
+        <ul>
+          <li><code>status</code>: Whether to enable or disable stabilization</li>
+        </ul> 
+        <h5>Notes:</h5> 
+        <p>To jump, disable stabilization and set speed to max (255)</p>
       </div>
     </div>
 
     <div class="row">
       <div class="col s12">
         <h3 class='red-text text-accent-4'>Resetting Aim</h3>
+        <p>For some reason, after a collision or in a loop, you may need to reset your aim.</p>
+        <p>This is as simple as a non-blocking function call!</p>
+        <p><code class="block definition">resetAim() → null</code></p>
       </div>
     </div>
 
 
   </div>
+  <div class="divider"></div>
 
   <div id="events">
-    <h2>Events</h2>
+    <h2><a href="#events" class="black-text">Events</a></h2>
+    <p>An event is a kind of action, like hitting a wall.</p>
+    <p>A sphero can be programmed to listen for events, and trigger a function based on this.</p>
+    <p>The general syntax for this is <code>registerEvent(EVENTTYPE, FUNCTION)</code></p>
+    <p>Where EVENTTYPE is the type of event, and FUNCTION is the function to be called when this event happens.</p>
+    <p>Remember that the function must be defined as async!</p>
+
+    <div class="row">
+      <div class="col s12">
+        <h3 class='red-text text-accent-4'>Collision</h3>
+        <p>A collision event occurs when a Sphero hits something.</p>
+        <p><code class="block definition">EventType.onCollision</code></p>
+        <h4>Example</h4>
+        <code class="block">
+          async funciton handleCollision() {<br />
+            await spin(180, 2) <br />
+          } <br />
+          registerEvent(EventType.onCollision, handleCollision);
+        </code>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <h3 class='red-text text-accent-4'>Freefalling</h3>
+        <p>When a sphero is freefalling (not rolling downhill), this event is triggered. Ideal for checking if the Sphero falls off of a table</p>
+        <p><code class="block definition">EventType.onFreefall</code></p>
+        <h4>Example</h4>
+        <code class="block">
+          async funciton handleFall() {<br />
+            setStabilization(false); <br />
+            roll(180, 255, 10); <br />
+          } <br />
+          registerEvent(EventType.onFreefall, handleFall);
+        </code>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <h3 class='red-text text-accent-4'>Landing</h3>
+        <p>This event is emitted if, and only if, a freefall event has fired and a collision has been detected.</p>
+        <p><code class="block definition"></code></p>
+        <code class="block">
+            async funciton handleLanding() {<br />
+              await spin(1080, 1) <br />
+            } <br />
+            registerEvent(EventType.onFreefall, handleLanding);
+          </code>
+      </div>
+    </div>
 
 
 
-  </div>
-
-  <div id="sensors">
-    <h2>Sensors</h2>
-
-
-    
   </div>
 
 </main>
