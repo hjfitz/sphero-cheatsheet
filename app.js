@@ -10,7 +10,6 @@ const index = path.join(public, 'index.html');
 app.use(logger);
 app.use(compression);
 
-app.use('/public', express.static(public));
-app.get('/', (req, res) => res.sendFile(index));
+app.use(express.static(public));
 
 module.exports = app;
