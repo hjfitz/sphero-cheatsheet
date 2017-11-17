@@ -106,10 +106,8 @@
         <h5>Notes:</h5> 
         <p>To jump, disable stabilization and set speed to max (255) - for example:</p>
         <pre class='card line-numbers'>
-            <code class="language-javascript">
-                setStabilization(false); 
-                await roll(0, 255, 4);
-            </code>
+            <code class="language-javascript">setStabilization(false); 
+                await roll(0, 255, 4);</code>
         </pre>
       </div>
     </div>
@@ -142,12 +140,10 @@
         <p><code class="block definition">EventType.onCollision</code></p>
         <h4>Example</h4>
         <pre class='card line-numbers'>
-          <code class="language-javascript">
-            async funciton handleCollision() {
+          <code class="language-javascript">async funciton handleCollision() {
               await spin(180, 2);
             }
-            registerEvent(EventType.onCollision, handleCollision);
-          </code>
+            registerEvent(EventType.onCollision, handleCollision);</code>
 
         </pre>
       </div>
@@ -160,13 +156,11 @@
         <p><code class="block definition">EventType.onFreefall</code></p>
         <h4>Example</h4>
         <pre class='card line-numbers'>
-          <code class="language-javascript">
-            async funciton handleFall() {
+          <code class="language-javascript">async funciton handleFall() {
               setStabilization(false); 
               roll(180, 255, 10); 
             }
-            registerEvent(EventType.onFreefall, handleFall);
-          </code>
+            registerEvent(EventType.onFreefall, handleFall);</code>
 
         </pre>
       </div>
@@ -180,8 +174,7 @@
           <code class="language-javascript">async funciton handleLanding() {
               await spin(1080, 1);
             }
-            registerEvent(EventType.onFreefall, handleLanding);
-       </code>
+            registerEvent(EventType.onFreefall, handleLanding);</code>
         </pre>
       </div>
     </div>
@@ -196,16 +189,15 @@
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                <h5 class="white-text">Lilly UK Student Hackathon</h5>
+                <p class="grey-text text-lighten-4">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum pariatur illo non necessitatibus ea, repudiandae quis, maiores animi modi neque nihil? Molestias, voluptatum dolore! Excepturi reiciendis suscipit optio praesentium temporibus.</p>
               </div>
               <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">External Links</h5>
                 <ul>
                   <li><a class="grey-text text-lighten-3" href="https://sphero.docsapp.io/docs/get-started" rel='noopener' target='_blank'>Official Sphero Docs</a></li>
                   <li><a class="grey-text text-lighten-3" href="https://developer.mozilla.org/en-US/" rel='noopener' target='_blank'>Mozille Developer Network</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://autotelicum.github.io/Smooth-CoffeeScript/literate/js-intro.html">Basic JS Syntax</a></li>
                 </ul>
               </div>
             </div>
